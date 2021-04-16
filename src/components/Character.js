@@ -1,28 +1,22 @@
 // Write your Character component here
 import React, {useState, useEffect} from "react";
 import styled from "styled-components";
+import CharInfo from "./charInfo.js";
+
 
 export default function Character(props) {
-    const {character} = props
+    const {theInfo} = props
+    const [sharedInfo, setSharedInfo] = useState(false)
+    const showInfo = () => {
+    setSharedInfo(!sharedInfo)
+}
     return (
         <div>
-           {character.map((item) => {
-               return (
-                   <CharacterInfo 
-                   key={item.url}
-                   characterObj={item}
-                   />
-               )
-           })}
+            <div>
+             <h2>{theInfo.name}</h2>
+            <button onClick={showInfo}>info</button>
+            <CharInfo theInfo={theInfo} toggleInfo={sharedInfo} />
+            </div>
         </div>
-    )
-}
-
-const CharacterInfo = (props) => {
-    const {characterObj} = props
-    return (
-        <>
-        <h1>{characterObj.name}</h1>
-        </>
     )
 }
