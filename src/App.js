@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
 import './App.css';
-import Characters from "./components/Character"
+import CharacterList from "./components/Character"
 
 const App = () => {
   const [info, setInfo] = useState({})
@@ -10,9 +10,9 @@ const App = () => {
   useEffect(() => {
       axios
       .get("https://swapi.dev/api/people")
-      .then((res) => {
+      .then(res => {
         setInfo(res.data)
-      })
+      }, [])
       .catch(err => {
         console.log(err)
       })
